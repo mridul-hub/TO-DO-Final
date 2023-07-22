@@ -1,0 +1,41 @@
+.leftBar {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 2;
+  background-color: rgb(252, 238, 238);
+}
+.filters {
+  display: flex;
+  padding-left: 20px;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  flex-direction: column;
+  background-color: blanchedalmond;
+}
+.categoryfilter {
+  padding: 5px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+.filtersp {
+  font-size: 30px;
+  font-weight: 500;
+}
+.sortby {
+  display: flex;
+  padding-left: 20px;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  flex-direction: column;
+}
+.sortby > p {
+  margin-bottom: 10px;
+  font-size: 30px;
+  font-weight: 500;
+}
+.sortby > button {
+  width: 20%;
+  padding: 3px;
+  margin-bottom: 5px;
+}

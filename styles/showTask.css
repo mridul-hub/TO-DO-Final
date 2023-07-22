@@ -1,0 +1,42 @@
+.showTasks {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  margin-top: 25px;
+  margin-left: 100px;
+}
+.date-task {
+  display: flex;
+  padding: 25px;
+  flex-direction: column;
+}
+.date-head {
+  font-size: 30px;
+}
+.details {
+  font-size: 20px;
+  padding-top: 10px;
+  padding-left: 20px;
+}
+.subtasks > ul {
+  font-size: 15px;
+  padding-left: 34px;
+  padding-top: 6px;
+}
+.detail-row {
+  display: flex;
+  flex-direction: row;
+}
+.detail-row > button {
+  padding: 2px;
+  margin-left: 10px;
+}
+.additional-detail {
+  display: flex;
+  flex-direction: row;
+  margin-bottom: 10px;
+}
+.additional-detail > p {
+  margin-right: 15px;
+}

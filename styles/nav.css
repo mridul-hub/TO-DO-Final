@@ -1,0 +1,67 @@
+.nav {
+  height: 60px;
+  background: rgb(209, 47, 47);
+  display: flex;
+  color: white;
+  flex-direction: row;
+  align-items: center;
+}
+.nav-icon {
+  display: flex;
+  align-items: center;
+  flex-grow: 2;
+}
+.nav-icon > img {
+  cursor: pointer;
+  height: 50px;
+  width: 50px;
+}
+.nav-search {
+  display: flex;
+  flex-grow: 4;
+  align-items: center;
+}
+.nav-search > img {
+  cursor: pointer;
+  height: 50px;
+  width: 70px;
+}
+.nav-search > p {
+  margin-left: 20px;
+}
+.nav-addtask {
+  flex-grow: 2;
+  display: flex;
+  align-items: center;
+}
+.nav-addtask > p {
+  cursor: pointer;
+  margin-left: 10px;
+}
+.nav-addtask > span {
+  cursor: pointer;
+  margin-top: -5px;
+  font-size: 40px;
+}
+.nav-addtask > img {
+  cursor: pointer;
+  height: 50px;
+  width: 50px;
+}
+.nav-addtask > button {
+  margin-left: 10px;
+  background: white;
+  color: rgb(209, 47, 47);
+  padding: 5px;
+  border-radius: 5px;
+}
+.nav-notification {
+  flex-grow: 2;
+  display: flex;
+  align-items: center;
+}
+.nav-notification > img {
+  cursor: pointer;
+  height: 30px;
+  width: 40px;
+}

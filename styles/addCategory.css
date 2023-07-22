@@ -1,0 +1,21 @@
+.newcat {
+  width: 300px;
+  height: 200px;
+  margin-top: 150px;
+  margin-left: 400px;
+  background-color: white;
+  position: absolute;
+  border: 1px solid black;
+  border-radius: 4px;
+  display: none;
+  box-shadow: 8px 16px 16px 8px rgba(0, 0, 0, 0.2);
+}
+.error-message {
+  display: flex;
+  flex-direction: column;
+}
+.error-message > img {
+  align-self: flex-end;
+  height: 20px;
+  width: 20px;
+}

@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel = "stylesheet" href = "./styles/nav.css"/>
+    <link rel = "stylesheet" href = "./styles/general.css"/>
+    <link rel = "stylesheet" href = "./styles/display.css"/>
+    <link rel = "stylesheet" href = "./styles/leftBar.css"/>
+    <link rel = "stylesheet" href = "./styles/dataBody.css"/>
+    <link rel = "stylesheet" href = "./styles/addCategory.css"/>
+    <link rel = "stylesheet" href = "./styles/showTask.css"/>
+    <link rel = "stylesheet" href = "./styles/edit.css"/>
+    <title>Document</title>
+
+        <!-- Ubuntu -->
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link
+          href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;500;600;700&family=Ubuntu:wght@400;500;700&display=swap"
+          rel="stylesheet"
+        />
+    
+        <!-- PT Sans -->
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link
+          href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;500;600;700&family=Ubuntu:wght@400;500;700&display=swap"
+          rel="stylesheet"
+        />
+    
+</head>
+<body>
+    <div class = "mainContainer">
+        <div class="nav">
+            <div class = "nav-icon">
+                <img src="./images/logo-icon.png">
+            </div>
+            <div class = "nav-search">
+                <img src = "./images/search-icon.jpg">
+                <p>Quick Search ...</p>             
+            </div>
+            <div id = "add-task" class = "nav-addtask">
+                <button onclick="openBox(),showhomeTask()" >New Task</button>
+                <button onclick = "catBoxopen()">New Category</button>
+            </div>
+            <div class = "nav-notification">
+                <img src = "./images/notification-icon.png">
+            </div>
+        </div>
+        <div class = "container">
+            <div id = "editinput" class = "editTask">
+                <div class = "editTask-box">
+                    <div class = "error-message-edittask" id = "error-message-edittask">
+                        <img onclick="closeeditbox()" src="./images/close-icon.png" style="cursor:pointer"/>
+                    </div>
+                    <p id = "idholder" style="color: black; font-weight: 450; font-size: large;">Edit Task</p>
+                    <div class = "input-row">
+                        <input type ="text" id = "edit-input-box" style="flex-grow: 8;">
+                        <input type = "date" id = "edit-duedate">
+                    </div>
+                    <div class = "submit-row">
+                        <button  onclick="editTaskDb()">Edit Task</button>
+                        <select id="edit-priority" name="priority" style="margin-right: 10px;">
+                            <option value="Low">Low Priority</option>
+                            <option value="Medium">Medium Priority</option>
+                            <option value="High">High Priority</option>
+                        </select>
+                        <select id = "editTaskcategory" name = "category" style="margin-right: 10px;">
+                        </select>
+                        <input type ="text" id = "edittagText">
+                    </div>
+                </div>
+            </div>
+            <div id = "input" class = "newTask">
+                <div class = "newTask-box">
+                    <div class = "error-message-addtask" id = "error-message-addtask">
+                        <img onclick="closebox()" src="./images/close-icon.png" style="cursor:pointer"/>
+                    </div>
+                    <p style="color: black; font-weight: 450; font-size: large;">Quick Add Task</p>
+                    <div class = "input-row">
+                        <input type ="text" id = "input-box" placeholder="Add your task" style="flex-grow: 8;">
+                        <input type = "date" id = "duedate">
+                    </div>
+                    <div class = "submit-row">
+                        <button onclick="addTaskDb()">Add Task</button>
+                        <select id="priority" name="priority" style="margin-right: 10px;">
+                            <option value="Low">Low Priority</option>
+                            <option value="Medium">Medium Priority</option>
+                            <option value="High">High Priority</option>
+                        </select>
+                        <select id = "addTaskcategory" name = "category" style="margin-right: 10px;">
+                        </select>
+                        <input type ="text" id = "tagText" placeholder="Tags">
+                    </div>
+                </div>
+            </div>
+            <div id = "addcat" class = "newcat">
+                <div class = "newTask-box">
+                    <div class = "error-message" id = "error-message">
+                        <img onclick="closecatbox()" src="./images/close-icon.png" style="cursor:pointer"/>
+                    </div>
+                    <p style="color: black; font-weight: 450; font-size: large;">Quick Add New Category</p>
+                    <div class = "input-row">
+                        <input type ="text" id = "cat-input-box" placeholder="Add your task" style="flex-grow: 8;">
+                    </div>
+                    <div class = "submit-row">
+                        <button onclick="addCategory()">Add Category</button>
+                    </div>
+                </div>
+            </div>
+            <div class = "display">
+                <div class = "leftBar">
+                    <div class = "filters">
+                        <p class = "filtersp">Filters</p>
+                        <div class = "categoryfilter">
+                            <p>Category:</p>
+                            <select id = "filtercategory" name = "filtercategory" style="margin-left: 10px;">
+                            </select>
+                        </div>
+                        <div class = "categoryfilter">
+                            <p>Priority:</p>
+                            <select id="priorityfilter" name="priorityfilter" style="margin-left: 10px;">
+                                <option value="All">ALL</option>
+                                <option value="Low">Low Priority</option>
+                                <option value="Medium">Medium Priority</option>
+                                <option value="High">High Priority</option>
+                            </select>
+                        </div>
+                        <div class = "categoryfilter">
+                            <p>StartDate:</p>
+                            <input type = "date" id = "startdate" style="margin-left: 10px;">
+                        </div>
+                        <div class = "categoryfilter">
+                            <p>EndDate:</p>
+                            <input type = "date" id = "Enddate" style="margin-left: 10px;">
+                        </div>
+                        <div class = "categoryfilter">
+                            <p>Status:</p>
+                            <select id="status" name="status" style="margin-left: 10px;">
+                                <option value="All">Both</option>
+                                <option value="true">Completed</option>
+                                <option value="false">Not completed</option>
+                            </select>
+                        </div>  
+                        <div class = "categoryfilter">
+                            <button onclick = "filterData()" style="align-self:flex-start;margin-left:0px;padding: 4px;background-color: green;color: white;">Submit</button>
+                            <button onclick = "showhomeTask()" style="align-self:flex-start;margin-left:6px;padding: 4px;background-color: tomato;color: white;">Clear</button>
+                        </div>
+                              
+                    </div>
+                    <div class = "sortby">
+                        <p>Sort By</p>
+                        <button onclick="sortbyDate()">Date</button>
+                        <button onclick="sortbyprty()">Priority</button>
+                        <button onclick="sortbysts()">Status</button>
+                    </div>
+                </div>
+                <div id = "hero" class = "dataBody">
+                    <div class = "showTasks" id = "showTask">
+                        <div class = "date-task">
+                            <p class = "date-head">Date</p>
+                            <div class = "additional-detail">
+                                <p>Category Details</p>
+                                <p>Priority</p>
+                                <p>Tags:</p>
+                            </div>
+                            <div class = "one-task">
+                                <div class = "detail-row">
+                                    <p class = "details">Taskdetails</p>
+                                    <button>Mark Complete</button>
+                                    <button>Edit</button>
+                                    <button>Delete</button>
+                                </div>
+                                <div class = "subtasks">
+                                    <ul>
+                                        <li>To today</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="script/db.js"></script>
+    <script src="script/functionality.js"></script>
+    <script src="https://unpkg.com/shortid-dist@1.0.5/dist/shortid-2.2.13.js"></script>
+</body>
+</html>

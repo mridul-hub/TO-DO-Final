@@ -1,0 +1,60 @@
+.dataBody {
+  display: flex;
+  flex-grow: 8;
+  flex-direction: column;
+  align-items: center;
+}
+.newTask {
+  width: 600px;
+  height: 160px;
+  margin-top: 200px;
+  margin-left: 400px;
+  border: 1px solid black;
+  border-radius: 4px;
+  background-color: white;
+  z-index: 999;
+  display: none;
+  position: absolute;
+  box-shadow: 8px 16px 16px 8px rgba(0, 0, 0, 0.2);
+}
+.newTask-box {
+  padding-left: 25px;
+  padding-right: 10px;
+  padding-bottom: 10px;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+input {
+  padding: 8px;
+  color: black;
+}
+.submit-row {
+  display: flex;
+  flex-direction: row;
+}
+option {
+  color: black;
+}
+.submit-row > button {
+  background-color: rgb(209, 47, 47);
+  padding: 5px;
+  margin-right: 10px;
+}
+.input-row {
+  display: flex;
+  flex-direction: row;
+}
+/* .newTask-box > img {
+  
+} */
+.error-message-addtask {
+  display: flex;
+  flex-direction: column;
+}
+.error-message-addtask > img {
+  align-self: flex-end;
+  height: 20px;
+  width: 20px;
+}
