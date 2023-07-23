@@ -177,10 +177,8 @@ function showhomeTask(){
     let alltasks = tasks.result;
     alltasks.forEach(function (taskItem) {
       const d1 = Date.parse(taskItem.dueDate);
-      if(d1>=todayDate)
-      {
-        upcomingTask.push(taskItem);
-      }
+      upcomingTask.push(taskItem);
+      
      });
      upcomingTask.sort(function(a, b) {
       var keyA = new Date(a.dueDate),
@@ -253,23 +251,45 @@ function showhomeTask(){
          but4.innerHTML = "Mark Uncomplete";
          but4.id = taskItem.id;
          but4.className = "Mark-uncomplete"
-    
+         
+         let but5 = document.createElement("button");
+         but5.innerHTML = "Add SubTask";
+         but5.id = taskItem.id;
+         but5.className = "add-subtask";
 
          detailRow.appendChild(but1);
          detailRow.appendChild(but2); 
          detailRow.appendChild(but3);
          detailRow.appendChild(but4);
+         detailRow.appendChild(but5);
+
          let subtask = document.createElement("div");
          subtask.className = "subtasks";
-         let ul = document.createElement("ul");
-         let li = document.createElement("li");
-         ul.appendChild(li);
-         subtask.appendChild(ul);
-         oneTask.appendChild(detailRow);
-         oneTask.appendChild(subtask);
-         date.appendChild(oneTask);
-         showTask.appendChild(date);  
+         let dbTransaction = db.transaction("subtasks","readwrite");
+         let subtaskStore = dbTransaction.objectStore("subtasks");
+         let taskindex = subtaskStore.index("taskget");
+         let subtaskquery = taskindex.getAll([taskItem.id]);
+         subtaskquery.onsuccess = (e)=>{
+           let subtsks = subtaskquery.result
+           let ul = document.createElement("ul");
 
+           subtsks.forEach(function(subitem){
+            let li = document.createElement("li");
+            li.innerHTML = subitem.subdetail;
+            li.id = subitem.id;
+            let but8 = document.createElement("button");
+            but8.innerHTML = "Delete";
+            but8.id = subitem.id;
+            but8.className = "delete-sub";
+            li.appendChild(but8);
+            ul.appendChild(li);
+           });
+           subtask.appendChild(ul);
+           oneTask.appendChild(detailRow);
+           oneTask.appendChild(subtask);
+           date.appendChild(oneTask);
+           showTask.appendChild(date);
+         }
     });
     }
   }
@@ -387,21 +407,44 @@ function filterData(){
          but4.id = taskItem.id;
          but4.className = "Mark-uncomplete"
     
+         let but5 = document.createElement("button");
+         but5.innerHTML = "Add SubTask";
+         but5.id = taskItem.id;
+         but5.className = "add-subtask";
 
          detailRow.appendChild(but1);
          detailRow.appendChild(but2); 
          detailRow.appendChild(but3);
          detailRow.appendChild(but4);
+         detailRow.appendChild(but5);
+
          let subtask = document.createElement("div");
          subtask.className = "subtasks";
-         let ul = document.createElement("ul");
-         let li = document.createElement("li");
-         ul.appendChild(li);
-         subtask.appendChild(ul);
-         oneTask.appendChild(detailRow);
-         oneTask.appendChild(subtask);
-         date.appendChild(oneTask);
-         showTask.appendChild(date);  
+         let dbTransaction = db.transaction("subtasks","readwrite");
+         let subtaskStore = dbTransaction.objectStore("subtasks");
+         let taskindex = subtaskStore.index("taskget");
+         let subtaskquery = taskindex.getAll([taskItem.id]);
+         subtaskquery.onsuccess = (e)=>{
+           let subtsks = subtaskquery.result
+           let ul = document.createElement("ul");
+
+           subtsks.forEach(function(subitem){
+            let li = document.createElement("li");
+            li.innerHTML = subitem.subdetail;
+            li.id = subitem.id;
+            let but8 = document.createElement("button");
+            but8.innerHTML = "Delete";
+            but8.id = subitem.id;
+            but8.className = "delete-sub";
+            li.appendChild(but8);
+            ul.appendChild(li);
+           });
+           subtask.appendChild(ul);
+           oneTask.appendChild(detailRow);
+           oneTask.appendChild(subtask);
+           date.appendChild(oneTask);
+           showTask.appendChild(date);
+         }  
 
     });
     }
@@ -479,20 +522,43 @@ function sortbyDate(){
          but4.className = "Mark-uncomplete"
     
 
+         let but5 = document.createElement("button");
+         but5.innerHTML = "Add SubTask";
+         but5.id = taskItem.id;
+         but5.className = "add-subtask";
+
          detailRow.appendChild(but1);
          detailRow.appendChild(but2); 
          detailRow.appendChild(but3);
          detailRow.appendChild(but4);
-       let subtask = document.createElement("div");
-       subtask.className = "subtasks";
-       let ul = document.createElement("ul");
-       let li = document.createElement("li");
-       ul.appendChild(li);
-       subtask.appendChild(ul);
-       oneTask.appendChild(detailRow);
-       oneTask.appendChild(subtask);
-       date.appendChild(oneTask);
-       showTask.appendChild(date);  
+         detailRow.appendChild(but5);
+         let subtask = document.createElement("div");
+         subtask.className = "subtasks";
+         let dbTransaction = db.transaction("subtasks","readwrite");
+         let subtaskStore = dbTransaction.objectStore("subtasks");
+         let taskindex = subtaskStore.index("taskget");
+         let subtaskquery = taskindex.getAll([taskItem.id]);
+         subtaskquery.onsuccess = (e)=>{
+           let subtsks = subtaskquery.result
+           let ul = document.createElement("ul");
+
+           subtsks.forEach(function(subitem){
+            let li = document.createElement("li");
+            li.innerHTML = subitem.subdetail;
+            li.id = subitem.id;
+            let but8 = document.createElement("button");
+            but8.innerHTML = "Delete";
+            but8.id = subitem.id;
+            but8.className = "delete-sub";
+            li.appendChild(but8);
+            ul.appendChild(li);
+           });
+           subtask.appendChild(ul);
+           oneTask.appendChild(detailRow);
+           oneTask.appendChild(subtask);
+           date.appendChild(oneTask);
+           showTask.appendChild(date);
+         } 
 
   });
 }
@@ -569,20 +635,43 @@ function sortbyprty(){
        but4.className = "Mark-uncomplete"
   
 
-       detailRow.appendChild(but1);
-       detailRow.appendChild(but2); 
-       detailRow.appendChild(but3);
-       detailRow.appendChild(but4);
-       let subtask = document.createElement("div");
-       subtask.className = "subtasks";
-       let ul = document.createElement("ul");
-       let li = document.createElement("li");
-       ul.appendChild(li);
-       subtask.appendChild(ul);
-       oneTask.appendChild(detailRow);
-       oneTask.appendChild(subtask);
-       date.appendChild(oneTask);
-       showTask.appendChild(date);  
+       let but5 = document.createElement("button");
+         but5.innerHTML = "Add SubTask";
+         but5.id = taskItem.id;
+         but5.className = "add-subtask";
+
+         detailRow.appendChild(but1);
+         detailRow.appendChild(but2); 
+         detailRow.appendChild(but3);
+         detailRow.appendChild(but4);
+         detailRow.appendChild(but5);
+         let subtask = document.createElement("div");
+         subtask.className = "subtasks";
+         let dbTransaction = db.transaction("subtasks","readwrite");
+         let subtaskStore = dbTransaction.objectStore("subtasks");
+         let taskindex = subtaskStore.index("taskget");
+         let subtaskquery = taskindex.getAll([taskItem.id]);
+         subtaskquery.onsuccess = (e)=>{
+           let subtsks = subtaskquery.result
+           let ul = document.createElement("ul");
+
+           subtsks.forEach(function(subitem){
+            let li = document.createElement("li");
+            li.innerHTML = subitem.subdetail;
+            li.id = subitem.id;
+            let but8 = document.createElement("button");
+            but8.innerHTML = "Delete";
+            but8.id = subitem.id;
+            but8.className = "delete-sub";
+            li.appendChild(but8);
+            ul.appendChild(li);
+           });
+           subtask.appendChild(ul);
+           oneTask.appendChild(detailRow);
+           oneTask.appendChild(subtask);
+           date.appendChild(oneTask);
+           showTask.appendChild(date);
+         }
 
   });
 
@@ -661,20 +750,43 @@ function sortbysts(){
          but4.className = "Mark-uncomplete"
     
 
+         let but5 = document.createElement("button");
+         but5.innerHTML = "Add SubTask";
+         but5.id = taskItem.id;
+         but5.className = "add-subtask";
+
          detailRow.appendChild(but1);
          detailRow.appendChild(but2); 
          detailRow.appendChild(but3);
          detailRow.appendChild(but4);
-       let subtask = document.createElement("div");
-       subtask.className = "subtasks";
-       let ul = document.createElement("ul");
-       let li = document.createElement("li");
-       ul.appendChild(li);
-       subtask.appendChild(ul);
-       oneTask.appendChild(detailRow);
-       oneTask.appendChild(subtask);
-       date.appendChild(oneTask);
-       showTask.appendChild(date);  
+         detailRow.appendChild(but5);
+         let subtask = document.createElement("div");
+         subtask.className = "subtasks";
+         let dbTransaction = db.transaction("subtasks","readwrite");
+         let subtaskStore = dbTransaction.objectStore("subtasks");
+         let taskindex = subtaskStore.index("taskget");
+         let subtaskquery = taskindex.getAll([taskItem.id]);
+         subtaskquery.onsuccess = (e)=>{
+           let subtsks = subtaskquery.result
+           let ul = document.createElement("ul");
+
+           subtsks.forEach(function(subitem){
+            let li = document.createElement("li");
+            li.innerHTML = subitem.subdetail;
+            li.id = subitem.id;
+            let but8 = document.createElement("button");
+            but8.innerHTML = "Delete";
+            but8.id = subitem.id;
+            but8.className = "delete-sub";
+            li.appendChild(but8);
+            ul.appendChild(li);
+           });
+           subtask.appendChild(ul);
+           oneTask.appendChild(detailRow);
+           oneTask.appendChild(subtask);
+           date.appendChild(oneTask);
+           showTask.appendChild(date);
+         }
 
   });
 }
@@ -687,6 +799,16 @@ document.body.addEventListener('click',function(e){
   if(e.target.className=="edit")
   {
       editTask(e.target.id);
+  }
+  if(e.target.className==="delete-sub")
+  {
+    let dbTransaction2 = db.transaction("subtasks","readwrite");
+    let subtaskStore = dbTransaction2.objectStore("subtasks");
+    let res3 = subtaskStore.delete(e.target.id);
+    res3.onsuccess = (e) =>{
+      alert("SubTask Deleted Successfully");
+      showhomeTask();
+    }
   }
   if(e.target.className==="delete")
   {
@@ -718,6 +840,10 @@ document.body.addEventListener('click',function(e){
         showhomeTask();
       }
     }
+  }
+  if(e.target.className === "add-subtask")
+  {
+     addSubTask(e.target.id);
   }
 })
 
@@ -790,4 +916,179 @@ function editTaskDb(){
     } 
   }
 
+}
+
+function backlog(){
+  let dbTransaction = db.transaction("task","readwrite");
+  let taskStore = dbTransaction.objectStore("task");
+  let todayDate = new Date();
+  let upcomingTask = []
+  let tasks = taskStore.getAll();
+  tasks.onsuccess = (e)=>{
+    let alltasks = tasks.result;
+    alltasks.forEach(function (taskItem) {
+      const d1 = Date.parse(taskItem.dueDate);
+      if(d1<=todayDate&&taskItem.status==="false")
+      {
+        upcomingTask.push(taskItem);
+      }
+     });
+     upcomingTask.sort(function(a, b) {
+      var keyA = new Date(a.dueDate),
+        keyB = new Date(b.dueDate);
+      if (keyA < keyB) return -1;
+      if (keyA > keyB) return 1;
+      return 0;
+    });
+    showTask.innerHTML = "";
+    currentOrder = upcomingTask;
+    upcomingTask.forEach(function(taskItem){
+         let date = document.createElement("div")
+         date.className = "date-task";
+         date.id = taskItem.id;
+         let ptag1 = document.createElement("p");
+         ptag1.className = "date-head";
+         ptag1.innerHTML = taskItem.dueDate;
+         date.appendChild(ptag1);
+         let additional = document.createElement("div");
+         additional.className = "additional-detail";
+
+         let ptag4 = document.createElement("p");
+         ptag4.innerHTML = "Category" + ": " + taskItem.category;
+         additional.appendChild(ptag4);
+
+         let ptag5 = document.createElement("p");
+         ptag5.innerHTML = "Priority" + ": " + taskItem.priority;
+         additional.appendChild(ptag5);
+
+
+         let ptag7 = document.createElement("p");
+         if(taskItem.status==="false")
+         {
+          ptag7.innerHTML = "Status" + ": " + "Incomplete";
+         }
+         else{
+          ptag7.innerHTML = "Status" + ": " + "Complete";
+         }
+         additional.appendChild(ptag7);
+
+
+         let ptag6 = document.createElement("p");
+         ptag6.innerHTML = "Tags" + ": " + taskItem.tags;
+         additional.appendChild(ptag6);
+         date.appendChild(additional);
+         let oneTask = document.createElement("div");
+         oneTask.className = "one-task";
+         let detailRow = document.createElement("div");
+         detailRow.className = "detail-row";
+         let ptag2 =document.createElement("p");
+         ptag2.className = "details";
+         ptag2.innerHTML = taskItem.taskDetail;
+         detailRow.appendChild(ptag2);
+         let but1 = document.createElement("button");
+         but1.innerHTML = "Mark Complete"; 
+         but1.id = taskItem.id;
+         but1.className = "Mark-complete";
+
+         let but2 = document.createElement("button");
+         but2.innerHTML = "Edit"; 
+         but2.id = taskItem.id;
+         but2.className = "edit";
+
+         let but3 = document.createElement("button");
+         but3.innerHTML = "Delete";
+         but3.id = taskItem.id;
+         but3.className = "delete";
+
+         let but4 = document.createElement("button");
+         but4.innerHTML = "Mark Uncomplete";
+         but4.id = taskItem.id;
+         but4.className = "Mark-uncomplete"
+    
+
+         let but5 = document.createElement("button");
+         but5.innerHTML = "Add SubTask";
+         but5.id = taskItem.id;
+         but5.className = "add-subtask";
+
+         detailRow.appendChild(but1);
+         detailRow.appendChild(but2); 
+         detailRow.appendChild(but3);
+         detailRow.appendChild(but4);
+         detailRow.appendChild(but5);
+         let subtask = document.createElement("div");
+         subtask.className = "subtasks";
+         let dbTransaction = db.transaction("subtasks","readwrite");
+         let subtaskStore = dbTransaction.objectStore("subtasks");
+         let taskindex = subtaskStore.index("taskget");
+         let subtaskquery = taskindex.getAll([taskItem.id]);
+         subtaskquery.onsuccess = (e)=>{
+           let subtsks = subtaskquery.result
+           let ul = document.createElement("ul");
+
+           subtsks.forEach(function(subitem){
+            let li = document.createElement("li");
+            li.innerHTML = subitem.subdetail;
+            li.id = subitem.id;
+            let but8 = document.createElement("button");
+            but8.innerHTML = "Delete";
+            but8.id = subitem.id;
+            but8.className = "delete-sub";
+            li.appendChild(but8);
+            ul.appendChild(li);
+           });
+           subtask.appendChild(ul);
+           oneTask.appendChild(detailRow);
+           oneTask.appendChild(subtask);
+           date.appendChild(oneTask);
+           showTask.appendChild(date);
+         }  
+
+    });
+    }
+  }
+
+const addsub = document.getElementById("addsub");
+const subid = document.getElementById("subidholder");
+const submessage = document.getElementById("error-message-subtask");
+const subinp = document.getElementById("sub-input-box");
+
+function addSubTask(id){
+  addsub.style.display = "block";
+  subid.innerHTML = "Add SubTask to Task ID: " + id;
+}
+
+function closesubbox(){
+  closecatbox();
+  closebox();
+  closeeditbox;
+  addsub.style.display = "none";
+}
+
+function addSubDb(){
+  taskid = subid.innerHTML.slice(24);
+  if(subinp.value==="")
+  {
+      ptag = document.createElement("p");
+      ptag.innerHTML = "Add SubTask details";
+      setTimeout(function(){ ptag.style.display = 'none';},3000);
+      submessage.appendChild(ptag);
+      return ;
+  }
+  let subtaskid = shortid()
+  let dbTransaction = db.transaction("subtasks","readwrite");
+  let subtaskStore = dbTransaction.objectStore("subtasks");
+  let subdeta = {
+    id : subtaskid,
+    taskId: taskid,
+    subdetail: subinp.value
+  }
+  subtaskStore.add(subdeta);
+  subinp.value = "";
+  ptag = document.createElement("p");
+  ptag.innerHTML = "New SubTask added Succesfully";
+  setTimeout(function(){ ptag.style.display = 'none';},3000);
+  submessage.appendChild(ptag);
+  showhomeTask();
+  return ;
 }

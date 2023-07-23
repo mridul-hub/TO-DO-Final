@@ -20,9 +20,17 @@
   padding-left: 20px;
 }
 .subtasks > ul {
+  display: flex;
+  flex-direction: column;
   font-size: 15px;
   padding-left: 34px;
   padding-top: 6px;
+}
+li {
+  margin-bottom: 5px;
+}
+li > button {
+  margin-left: 5px;
 }
 .detail-row {
   display: flex;

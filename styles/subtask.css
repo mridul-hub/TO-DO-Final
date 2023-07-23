@@ -1,0 +1,31 @@
+.newsub {
+  width: 600px;
+  height: 160px;
+  margin-top: 200px;
+  margin-left: 400px;
+  border: 1px solid black;
+  border-radius: 4px;
+  background-color: white;
+  z-index: 999;
+  display: none;
+  position: absolute;
+  box-shadow: 8px 16px 16px 8px rgba(0, 0, 0, 0.2);
+}
+.subTask-box {
+  padding-left: 25px;
+  padding-right: 10px;
+  padding-bottom: 10px;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+.error-message-subtask {
+  display: flex;
+  flex-direction: column;
+}
+.error-message-subtask > img {
+  align-self: flex-end;
+  height: 20px;
+  width: 20px;
+}

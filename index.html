@@ -12,6 +12,7 @@
     <link rel = "stylesheet" href = "./styles/addCategory.css"/>
     <link rel = "stylesheet" href = "./styles/showTask.css"/>
     <link rel = "stylesheet" href = "./styles/edit.css"/>
+    <link rel = "stylesheet" href = "./styles/subtask.css">
     <title>Document</title>
 
         <!-- Ubuntu -->
@@ -110,6 +111,20 @@
                     </div>
                 </div>
             </div>
+            <div id = "addsub" class ="newsub">
+                <div class = "subTask-box">
+                    <div class = "error-message-subtask" id = "error-message-subtask">
+                        <img onclick="closesubbox()" src="./images/close-icon.png" style="cursor:pointer"/>
+                    </div>
+                    <p id = "subidholder" style="color: black; font-weight: 450; font-size: large;">Add Sub Task</p>
+                    <div class = "input-row">
+                        <input type ="text" id = "sub-input-box" style="flex-grow: 8;">
+                    </div>
+                    <div class = "submit-row">
+                        <button  onclick="addSubDb()">Add SubTask</button>
+                    </div>
+                </div>
+            </div>
             <div class = "display">
                 <div class = "leftBar">
                     <div class = "filters">
@@ -155,6 +170,11 @@
                         <button onclick="sortbyDate()">Date</button>
                         <button onclick="sortbyprty()">Priority</button>
                         <button onclick="sortbysts()">Status</button>
+                    </div>
+                    <div class = "sortby" style="background-color: thistle;">
+                        <p>Logs</p>
+                        <button onclick="backlog()" style="background-color: tomato; width: 30%;">ViewBacklogs</button>
+                        <button onclick=""style="background-color: green; width: 30%;">Activitylogs</button>
                     </div>
                 </div>
                 <div id = "hero" class = "dataBody">
